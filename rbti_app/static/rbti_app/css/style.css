@@ -1,0 +1,12 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+.main-table {
+  display: inline-block;
+  width: 60%;
+}
+
+.main-card {
+  display: inline-block;
+  width: 30%;
+}

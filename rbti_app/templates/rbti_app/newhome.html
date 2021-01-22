@@ -1,0 +1,44 @@
+{% extends 'rbti_app/index.html' %}
+{% block content %}
+<div class = "row">
+<div class = "col-4">
+<div class="card mt-4 main-card">
+    <ul class="list-group list-group-flush">
+      <a  class = "list-group-item active">List Buku</a>
+    </ul>
+  </div>
+</div>
+<div class="col-8">
+<table id="dtBasicExample" class="table table-hover table-sm mt-2 main-table" cellspacing="0" width="100%">
+  <thead>
+        <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Penulis</th>
+            <th>Penerbit</th>
+            <th>Tahun</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{book.id_buku}}</td>
+            <td>{{book.judul}}</td>
+            <td>{{book.penulis}}</td>
+            <td>{{book.penerbit}}</td>
+            <td>{{book.tahun}}</td>
+            <td><a class="btn"href="{% url 'rbti_app:peminjaman' book.id_buku %}">Pinjam</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+
+<script>
+$(document).ready(function () {
+   $('#dtBasicExample').DataTable();
+   $('.dataTables_length').addClass('bs-select');
+});
+</script>
+{% endblock content %}
