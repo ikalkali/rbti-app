@@ -1,0 +1,15 @@
+{% extends 'rbti_app/index.html' %} {% block content %}
+<div class="main-page">
+    <div class="main-page__title">
+    <h1 style="margin-bottom: 2rem;">RBTI <br> Universitas Brawijaya</h1>
+    <form action="" method="GET">
+        <div class="input-group d-flex align-items-center">
+            <input type="search" class="form-control" placeholder="Ketik buku, penulis atau penerbit disini" aria-label="Search"
+              aria-describedby="search-addon" name="param_cari" id="param_cari"/>
+            <button type="submit" class="btn btn-primary" style="width: 100px;" id="button-addon2"><i class="fas fa-search"></i></button>
+          </div>
+    </form>
+    <p class="mt-4"><a href='/semua-buku'>Klik disini untuk melihat semua koleksi RBTI</a></p>
+    </div>
+</div>
+{% endblock content %}

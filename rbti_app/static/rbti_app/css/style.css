@@ -10,3 +10,19 @@ body {
   display: inline-block;
   width: 30%;
 }
+
+.content-section {
+  margin-top: 2rem;
+}
+
+.main-page {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-page__title {
+  width: 80%;
+  text-align: center;
+}

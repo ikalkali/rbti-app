@@ -18,6 +18,9 @@ class Mahasiswa(models.Model):
     nama = models.CharField(null=False, max_length=255)
     email = models.EmailField(null=False, max_length=255, default=None)
 
+    def __str__(self):
+        return self.nama
+
 
 class Peminjaman(models.Model):
     tanggal_peminjaman = models.DateField(auto_now_add=True)

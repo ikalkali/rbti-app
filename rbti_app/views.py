@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse
+from django.contrib.postgres.search import SearchVector
 from django.views.generic import ListView, CreateView
 from .models import (Buku, Mahasiswa, Peminjaman)
 from .forms import PeminjamanForm
@@ -66,3 +67,34 @@ class PeminjamanCreateView(CreateView):
         return data
 
         # self.id_buku_id = get_object_or_404(Buku, pk=kwargs['id_buku'])
+
+class PeminjamanListView(ListView):
+    model = Peminjaman
+    template_name = 'rbti_app/peminjaman.html'
+    context_object_name = 'peminjaman'
+
+    # def get_context_data(self, **kwargs):
+    #     data = super().get_context_data(**kwargs)
+    #     data['buku'] = Buku.objects.get.all()
+
+def home_page(request):
+    if request.GET.get('param_cari') != '' and request.GET.get('param_cari') is not None :
+        param_cari = request.GET.get('param_cari')
+        context = {
+            'books': Buku.objects.annotate(search=SearchVector('judul', 'penerbit', 'penulis')).filter(search=param_cari).all()
+            }
+        print(context)
+        return render(request, 'rbti_app/newhome.html', context)
+    return render(request, 'rbti_app/halaman_depan.html')
+
+    
+
+class BukuListViewCari(ListView):
+    model = Buku
+    template_name = 'rbti_app/newhome.html'
+    context_object_name = 'books'
+    ordering = ['id_buku']
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    

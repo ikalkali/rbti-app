@@ -1,0 +1,46 @@
+{% extends 'rbti_app/index.html' %} {% block content %}
+<div class="row">
+  <div class="col-12 mt-4">
+      <h2>Peminjaman</h2>
+      <hr>
+    <table
+      id="dtBasicExample"
+      class="table table-hover table-sm mt-2 main-table"
+      cellspacing="0"
+      width="100%"
+    >
+      <thead>
+        <tr>
+          <th>Tanggal Peminjaman</th>
+          <th>Judul</th>
+          <th>Penulis</th>
+          <th>Penerbit</th>
+          <th>Tahun</th>
+          <th>NIM Peminjam</th>
+          <th>Peminjam</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for peminjam in peminjaman %}
+          <tr>
+            <td>{{peminjam.tanggal_peminjaman}}</td>
+            <td>{{peminjam.id_buku.judul}}</td>
+            <td>{{peminjam.id_buku.penulis}}</td>
+            <td>{{peminjam.id_buku.penerbit}}</td>
+            <td>{{peminjam.id_buku.tahun}}</td>
+            <td>{{peminjam.nim.nim}}</td>
+            <td>{{peminjam.nim.nama}}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $("#dtBasicExample").DataTable();
+    $(".dataTables_length").addClass("bs-select");
+  });
+</script>
+{% endblock content %}

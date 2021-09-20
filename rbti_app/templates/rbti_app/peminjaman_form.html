@@ -1,17 +1,32 @@
-{% extends "rbti_app/index.html" %}
-{% load crispy_forms_tags %}
+{% extends "rbti_app/index.html" %} {% load crispy_forms_tags %} 
 {% block content %}
-    <div class="content-section">
-        <p>Anda akan meminjam buku {{judul}} keluaran {{tahun}} yang diterbitkan {{penerbit}}</p>
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Pinjam Buku</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Pinjam</button>
-            </div>
-        </form>
+<div class="content-section">
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4 mt-4">Pinjam Buku</legend>
+        <p>Anda akan meminjam buku :</p>
+        <table class="table">
+          <tbody>
+          <tr>
+            <th>Judul</th>
+            <td>{{judul}}</td>
+          </tr>
+          <tr>
+            <th>Terbitan</th>
+            <td>{{tahun}}</td>
+          </tr>
+          <tr>
+            <th>Penerbit</th>
+            <td>{{penerbit}}</td>
+          </tr>
+        </tbody>
+        </table>
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Pinjam</button>
     </div>
+  </form>
+</div>
 {% endblock content %}
